@@ -3,22 +3,44 @@ require 'formula'
 class HadoopLzo < Formula
   homepage 'https://github.com/twitter/hadoop-lzo'
   url 'https://github.com/twitter/hadoop-lzo/archive/release-0.4.19.tar.gz'
-  sha1 'fe3ee09a0d43a4c343f6ee05659b4cf53cf82cad'
+  sha1 'ec2f6ed9114301b46e5a1977f74ef9047f38c3e5'
 
-  depends_on maven
-  depends_on lzop
+  depends_on "maven"
+  depends_on "lzop"
 
   def install
-		system 'mvn test package'
+		ENV.fetch('JAVA_HOME') do
+			odie "JAVA_HOME is not set. Enure you've installed JDK 1.7 and then add export JAVA_HOME=`/usr/libexec/java_home` to your .bashrc"
+    end
+
+    system "mvn", "package"
+		prefix.install Dir['target/*']
   end
 
-  def caveats; <<-EOS.undent
-    Verify your installation by running:
-      "box --version".
+	def native_lib
+		`find #{prefix} -iname 'lib' -type d -print -quit`
+	end
 
-    You can read more about box by running:
-      "brew home box".
+	def caveats; <<-EOS.undent
+    Make sure you add the following lines to your .bashrc:
+		
+      export HADOOP_CLASSPATH=#{prefix}/hadoop-lzo-#{version}.jar:$HADOOP_CLASSPATH
+      export JAVA_LIBRARY_PATH=#{native_lib}
+
+    Then make sure you update your mapred-site.xml
+	
+      <!-- Transparent LZO compression + decompression (ensure you have the native libs installed) -->
+      <property>
+        <name>io.compression.codecs</name>
+        <value>org.apache.hadoop.io.compress.GzipCodec,org.apache.hadoop.io.compress.DefaultCodec,com.hadoop.compression.lzo.LzoCodec,com.hadoop.compression.lzo.LzopCodec,org.apache.hadoop.io.compress.BZip2Codec</value>
+      </property>
+      <property>
+        <name>io.compression.codec.lzo.class</name>
+        <value>com.hadoop.compression.lzo.LzoCodec</value>
+      </property>
+
     EOS
   end
+
 
 end
