@@ -1,9 +1,9 @@
 require 'formula'
 
 class HadoopLzo < Formula
-  homepage 'http://box-project.org/'
-  url 'https://github.com/twitter/hadoop-lzo/tarball/release-0.4.19'
-  sha1 'd18596280a5b0fcd103b5ad4552b5ffc97816d61'
+  homepage 'https://github.com/twitter/hadoop-lzo'
+  url 'https://github.com/twitter/hadoop-lzo/archive/release-0.4.19.tar.gz'
+  sha1 'fe3ee09a0d43a4c343f6ee05659b4cf53cf82cad'
 
   depends_on maven
   depends_on lzop
