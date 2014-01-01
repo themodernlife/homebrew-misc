@@ -14,17 +14,17 @@ class HadoopLzo < Formula
     end
 
     system "mvn", "package"
-		prefix.install Dir['target/*']
+		libexec.install Dir['target/*']
   end
 
 	def native_lib
-		`find #{prefix} -iname 'lib' -type d -print -quit`
+		`find #{libexec} -iname 'lib' -type d -print -quit`
 	end
 
 	def caveats; <<-EOS.undent
     Make sure you add the following lines to your .bashrc:
 		
-      export HADOOP_CLASSPATH=#{prefix}/hadoop-lzo-#{version}.jar:$HADOOP_CLASSPATH
+      export HADOOP_CLASSPATH=#{libexec}/hadoop-lzo-#{version}.jar:$HADOOP_CLASSPATH
       export JAVA_LIBRARY_PATH=#{native_lib}
 
     Then make sure you update your mapred-site.xml
