@@ -27,6 +27,10 @@ class HadoopLzo < Formula
       export HADOOP_CLASSPATH=#{libexec}/hadoop-lzo-#{version}.jar:$HADOOP_CLASSPATH
       export JAVA_LIBRARY_PATH=#{native_lib}
 
+    Also make sure the below line is commented out in /usr/local/Cellar/hadoop/1.2.1/libexec/bin/hadoop
+
+      # JAVA_LIBRARY_PATH=''
+
     Then make sure you update your mapred-site.xml
 	
       <!-- Transparent LZO compression + decompression (ensure you have the native libs installed) -->
