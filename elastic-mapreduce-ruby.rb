@@ -1,9 +1,9 @@
 require 'formula'
 
 class ElasticMapreduceRuby < Formula
-  homepage 'http://aws.amazon.com/developertools/2264'
-  url 'http://elasticmapreduce.s3.amazonaws.com/elastic-mapreduce-ruby.zip'
-  sha1 '200b48171890ebc374ad2f6caf51455504800a55'
+  homepage 'https://github.com/tc/elastic-mapreduce-ruby'
+  url 'https://github.com/tc/elastic-mapreduce-ruby/archive/master.tar.gz'
+  sha1 '69b2039ba72a9caf0a120f4d5b4e16bd6ecd54c1'
 
   def elastic_mapreduce_script
     <<-EOS.undent
