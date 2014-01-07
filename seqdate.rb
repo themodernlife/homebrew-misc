@@ -1,6 +1,6 @@
 require 'formula'
 
-class SeqDate < Formula
+class Seqdate < Formula
   head 'https://github.com/themodernlife/seqdate'
   
   def seqdate_script
