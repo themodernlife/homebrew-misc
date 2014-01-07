@@ -1,7 +1,7 @@
 require 'formula'
 
 class Seqdate < Formula
-  head 'git@github.com:themodernlife/seqdate.git'
+  head 'https://github.com/themodernlife/seqdate.git'
   
   def seqdate_script
     <<-EOS.undent
