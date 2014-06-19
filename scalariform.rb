@@ -3,6 +3,7 @@ require 'formula'
 class Scalariform < Formula
   url 'https://github.com/mdr/scalariform', :using => :nounzip
   homepage 'https://github.com/mdr/scalariform'
+  version '0.1.4'
 
   def install
     libexec.install 'scalariform.jar'
