@@ -1,14 +1,11 @@
 require 'formula'
 
 class Scalariform < Formula
+  url 'https://github.com/mdr/scalariform', :using => :nounzip
   homepage 'https://github.com/mdr/scalariform'
 
-  resource 'jar' do
-    url 'https://s3.amazonaws.com/scalariform/scalariform.jar'
-  end
-
   def install
-    libexec.install resource('jar')
+    libexec.install 'scalariform.jar'
     (bin/"scalariform").write scalariform_script
   end
 
