@@ -13,7 +13,9 @@ class HadoopSnappy < Formula
       odie "JAVA_HOME is not set. Enure you've installed JDK 1.7 and then add export JAVA_HOME=`/usr/libexec/java_home` to your .bashrc"
     end
 
+    system "make", "native", "LIBNAME=libsnappyjava.dylib"
     system "./sbt", "package"
+    
     libexec.install Dir['target/*']
   end
 
