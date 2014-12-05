@@ -23,8 +23,8 @@ class HadoopLzo < Formula
 
 	def caveats; <<-EOS.undent
     Make sure you add the following lines to your .bashrc:
-		
-      export HADOOP_CLASSPATH=#{libexec}/hadoop-lzo-#{version}.jar:$HADOOP_CLASSPATH
+
+      export HADOOP_CLASSPATH=#{opt_prefix}/libexec/hadoop-lzo-#{version}.jar:$HADOOP_CLASSPATH
       export JAVA_LIBRARY_PATH=#{native_lib}
 
     Also make sure the below line is commented out in /usr/local/Cellar/hadoop/1.2.1/libexec/bin/hadoop
@@ -32,7 +32,7 @@ class HadoopLzo < Formula
       # JAVA_LIBRARY_PATH=''
 
     Then make sure you update your mapred-site.xml
-	
+
       <!-- Transparent LZO compression + decompression (ensure you have the native libs installed) -->
       <property>
         <name>io.compression.codecs</name>
